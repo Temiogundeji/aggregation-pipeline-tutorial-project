@@ -1,6 +1,6 @@
 # Aggregation Pipeline Tutorial Project
 
-##
+## INTRODUCTION
 This is a project used in explaining the mongodb aggregation pipeline. Through this project, you will understand:
  - Aggregation pipeline stages.
  - How to perform various operations in mongodb.
