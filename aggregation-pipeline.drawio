@@ -1,0 +1,37 @@
+<mxfile host="65bd71144e">
+    <diagram name="Page-1" id="-89iqjQGXt3IiADseH3E">
+        <mxGraphModel dx="762" dy="367" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="gDhdNA_lw5HyHlNvJGPf-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="gDhdNA_lw5HyHlNvJGPf-1" target="gDhdNA_lw5HyHlNvJGPf-2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gDhdNA_lw5HyHlNvJGPf-1" value="Data from MongoDB collection" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="305" y="90" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="gDhdNA_lw5HyHlNvJGPf-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="gDhdNA_lw5HyHlNvJGPf-2" target="gDhdNA_lw5HyHlNvJGPf-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gDhdNA_lw5HyHlNvJGPf-2" value="Stage 1" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+                    <mxGeometry x="305" y="200" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="gDhdNA_lw5HyHlNvJGPf-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="gDhdNA_lw5HyHlNvJGPf-4" target="gDhdNA_lw5HyHlNvJGPf-6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gDhdNA_lw5HyHlNvJGPf-4" value="Stage 2" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+                    <mxGeometry x="305" y="310" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="gDhdNA_lw5HyHlNvJGPf-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="gDhdNA_lw5HyHlNvJGPf-6" target="gDhdNA_lw5HyHlNvJGPf-8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="gDhdNA_lw5HyHlNvJGPf-6" value="Stage 3" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+                    <mxGeometry x="305" y="420" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="gDhdNA_lw5HyHlNvJGPf-8" value="Output" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="305" y="530" width="120" height="40" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
