@@ -51,7 +51,7 @@ A blog application with interesting features that would help us leverage various
   - Perform a lookup to join the Article collection with the Comment collection using the article's ID.
   - Add the most recent comments to each article.
 
-This article will build out some of the features above (80%) to ensure we almost implement all the concept you have learned theoretically in the article.
+This article will build out some of the features above (60%) to ensure we almost implement all the concept you have learned theoretically in the article. The rest will be left for you as an exercise to help to master mongodb aggregation pipeline.
 
 I hope you find this article helpful in your journey to learning mongodb aggregation framework.
 Thanks.
