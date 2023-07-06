@@ -9,7 +9,7 @@ const signup = handleAsync(async (req, res, next) => {
     username: joi
       .string()
       .required()
-      .error(new Error("Please include last name of business"))
+      .error(new Error("Please include your username"))
       .min(1),
     email: joi
       .string()
@@ -35,8 +35,7 @@ const signup = handleAsync(async (req, res, next) => {
   //   });
 
   await User.create({
-    firstName,
-    lastName,
+    username,
     email,
     password: bcrypt.hashSync(String(password), 10),
   });

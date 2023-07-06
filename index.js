@@ -3,16 +3,17 @@ require("dotenv").config({ path: path.resolve(process.cwd(), ".env") });
 const express = require("express");
 const cors = require("cors");
 const { expressLogger, logger } = require("./src/utils/logger");
-const routes = require("./src/routes/auth/auth");
+const routes = require("./src/routes/auth");
 
 const app = express();
 app.use(expressLogger);
 
-app.use("/simple-blog/api/v1", routes);
-
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use("/simple-blog/api/v1", routes);
+
  
 app.all("/*", (req, res, next) => {
   next(new Error("Resource unavailable"));
