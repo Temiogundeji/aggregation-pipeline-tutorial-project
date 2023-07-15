@@ -5,10 +5,11 @@ module.exports = {
   async createCategory(categoryData) {
     try {
       const category = new Category(categoryData);
-      const categoryExist = await Category.findOne({ title: category.title });
+      const categoryExist = await Category.findOne({ name: category.name });
+      console.log(categoryExist);
       if (categoryExist) throw new Error("Category also exists");
-      await Category.save();
-      return Category;
+      await category.save();
+      return category;
     } catch (error) {
       throw new Error(error);
     }

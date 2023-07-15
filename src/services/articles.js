@@ -7,8 +7,8 @@ module.exports = {
       const article = new Article(articleData);
       const articleExist = await Article.findOne({ title: article.title });
       if (articleExist) throw new Error("Article also exists");
-      await Article.save();
-      return Article;
+      await article.save();
+      return article;
     } catch (error) {
       throw new Error(error);
     }
