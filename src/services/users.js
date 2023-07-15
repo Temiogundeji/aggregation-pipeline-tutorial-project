@@ -1,5 +1,4 @@
 const User = require("../models/User");
-const { AppError, HttpCode } = require("../exceptions/AppError");
 
 module.exports = {
   async createUser(userData) {
@@ -8,10 +7,7 @@ module.exports = {
       await user.save();
       return user;
     } catch (error) {
-      throw new AppError({
-        httpCode: HttpCode.INTERNAL_SERVER_ERROR,
-        description: "Error creating user",
-      });
+      throw new Error(error.message);
     }
   },
 
@@ -21,10 +17,7 @@ module.exports = {
       if (!user) throw new Error("User not found");
       return user;
     } catch (error) {
-      throw new AppError({
-        httpCode: HttpCode.INTERNAL_SERVER_ERROR,
-        description: "User not found",
-      });
+      throw new Error(error.message);
     }
   },
 
@@ -34,10 +27,7 @@ module.exports = {
       if (!user) throw new Error("User not found");
       return user;
     } catch (error) {
-      throw new AppError({
-        httpCode: HttpCode.INTERNAL_SERVER_ERROR,
-        description: "User not found",
-      });
+      throw new Error(error.message);
     }
   },
   async updateUser(userId, userData) {
@@ -48,10 +38,7 @@ module.exports = {
       if (!user) throw new Error("User not found");
       return user;
     } catch (error) {
-      throw new AppError({
-        httpCode: HttpCode.INTERNAL_SERVER_ERROR,
-        description: "User not found",
-      });
+      throw new Error(error.message);
     }
   },
   async deleteUser(userId) {
@@ -60,10 +47,7 @@ module.exports = {
       if (!user) throw new Error("User not found");
       return user;
     } catch (error) {
-      throw new AppError({
-        httpCode: HttpCode.INTERNAL_SERVER_ERROR,
-        description: "User not found",
-      });
+      throw new Error(error.message);
     }
   },
 };

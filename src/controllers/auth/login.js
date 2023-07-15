@@ -2,11 +2,10 @@ const bcrypt = require("bcrypt");
 const { User } = require("../../models");
 const handleAsync = require("../../utils/errorHandler");
 const jwt = require("jsonwebtoken");
+const { getUserByEmail } = require("../../services/users");
 
 const login = handleAsync(async (req, res) => {
-  const user = await User.findOne({
-    email: req.body.email,
-  });
+  const user = await getUserByEmail(req.body.email);
   const isPasswordMatch = await bcrypt.compare(
     String(req.body.password),
     user.password

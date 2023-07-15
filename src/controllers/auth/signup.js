@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const joi = require("joi");
 const { User } = require("../../models");
 const handleAsync = require("../../utils/errorHandler");
+const { getUserByEmail } = require("../../services/users");
 
 const signup = handleAsync(async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -24,9 +25,7 @@ const signup = handleAsync(async (req, res, next) => {
       .min(1),
   });
   await schema.validateAsync({ username, email, password });
-  const user = await User.findOne({
-    email: req.body.email,
-  });
+  const user = await getUserByEmail(req.body.email);
   if (user) {
     throw new Error("User already exists");
   }
