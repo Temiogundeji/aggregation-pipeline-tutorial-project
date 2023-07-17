@@ -16,9 +16,12 @@ module.exports = {
 
   async getArticleById(articleId) {
     try {
-      const Article = await Article.findById(articleId);
-      if (!Article) throw new Error("Article not found");
-      return Article;
+      const article = await Article.findById(articleId)
+        .populate("comments")
+        .populate("category")
+        .exec();
+      if (!article) throw new Error("Article not found");
+      return article;
     } catch (error) {
       throw new Error(error || "Article not found");
     }

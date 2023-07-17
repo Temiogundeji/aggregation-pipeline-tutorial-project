@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { newComment, modifyComment } = require("../controllers/comment");
+const { newComment, modifyComment } = require("../controllers/comments");
 
 router.post("/", newComment);
 router.post("/", modifyComment);

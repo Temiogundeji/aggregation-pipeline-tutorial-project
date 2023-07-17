@@ -1,5 +1,5 @@
 const handleAsync = require("../../utils/errorHandler");
-const { createComment, updateComment } = require("../../services/comment");
+const { createComment, updateComment } = require("../../services/comments");
 
 const newComment = handleAsync(async (req, res) => {
   const comment = await createComment(req.body);

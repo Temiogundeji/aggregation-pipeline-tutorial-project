@@ -1,7 +1,5 @@
 const { ObjectId } = require("mongodb");
-const { AppError, HttpCode } = require("../exceptions/AppError");
 const { Comment, Article } = require("../models");
-const { comment } = require("../controllers");
 
 module.exports = {
   async createComment(commentData) {
@@ -67,20 +65,20 @@ module.exports = {
       throw new Error(error);
     }
   },
-  async addCommentToArticle(articleId, commentObj) {
-    try {
-      const article = await Article.aggregate([
-        { $match: { _id: ObjectId(articleId) } },
-        {
-          $addFields: {
-            comments: { $push: { ...commentObj } },
-          },
-        },
-      ]);
-      console.log(article);
-      return article;
-    } catch (e) {
-      throw new Error(e.message);
-    }
-  },
+  // async addCommentToArticle(articleId, commentObj) {
+  //   try {
+  //     const article = await Article.aggregate([
+  //       { $match: { _id: ObjectId(articleId) } },
+  //       {
+  //         $addFields: {
+  //           comments: { $push: { ...commentObj } },
+  //         },
+  //       },
+  //     ]);
+  //     console.log(article);
+  //     return article;
+  //   } catch (e) {
+  //     throw new Error(e.message);
+  //   }
+  // },
 };

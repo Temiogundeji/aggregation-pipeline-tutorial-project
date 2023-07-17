@@ -1,8 +1,12 @@
 const router = require("express").Router();
-const { newArticle, modifyArticle } = require("../controllers/article");
+const {
+  newArticle,
+  modifyArticle,
+  fetchArticleById,
+} = require("../controllers/article");
+const { getArticleById } = require("../services/articles");
 
-router.post("/", newArticle);
+router.get("/:articleId", fetchArticleById).post("/", newArticle);
 router.post("/", modifyArticle);
-router.post("/:articleId/comments");
 
 module.exports = router;
