@@ -32,6 +32,12 @@ const articleSchema = new mongoose.Schema(
   { toJSON: { virtuals: true }, toObject: { virtuals: true }, timestamps: true }
 );
 
+// articleSchema.virtual("commentList", {
+//   ref: "Comment",
+//   localField: "_id",
+//   foreignField: "article",
+// });
+
 const Article = mongoose.model("Article", articleSchema);
 
 module.exports = Article;

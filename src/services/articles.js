@@ -1,5 +1,5 @@
 const { Article } = require("../models");
-const { ObjectId } = require("mongodb");
+const mongoose = require("mongoose");
 
 module.exports = {
   async createArticle(articleData) {
@@ -13,13 +13,78 @@ module.exports = {
       throw new Error(error);
     }
   },
-
   async getArticleById(articleId) {
     try {
-      const article = await Article.findById(articleId)
-        .populate("comments")
-        .populate("category")
-        .exec();
+      const article = await Article.aggregate([
+        {
+          $match: {
+            _id: new mongoose.Types.ObjectId(articleId),
+          },
+        },
+        {
+          $lookup: {
+            from: "comments",
+            localField: "comments",
+            foreignField: "_id",
+            as: "comments",
+          },
+        },
+        {
+          $lookup: {
+            from: "users",
+            let: { authorId: "$author" },
+            pipeline: [
+              {
+                //match _id in the user collection to the authorId in the article collection
+                $match: {
+                  $expr: { $eq: ["$_id", "$$authorId"] },
+                },
+              },
+              {
+                $project: {
+                  _id: 1,
+                  username: 1,
+                  // Include other non-sensitive fields you want to expose
+                },
+              },
+            ],
+            as: "author",
+          },
+        },
+        {
+          $unwind: "$author",
+        },
+        {
+          $lookup: {
+            from: "categories",
+            localField: "category",
+            foreignField: "_id",
+            as: "category",
+            pipeline: [
+              {
+                $project: {
+                  _id: 1,
+                  name: 1,
+                },
+              },
+            ],
+          },
+        },
+        {
+          $unwind: "$category",
+        },
+        {
+          $project: {
+            title: 1,
+            content: 1,
+            category: 1,
+            // Include other non-sensitive fields from the articles collection
+            author: 1, // The 'author' field now contains only the specified fields from the users collection
+            comments: 1,
+          },
+        },
+      ]);
+
       if (!article) throw new Error("Article not found");
       return article;
     } catch (error) {
