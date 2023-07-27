@@ -17,12 +17,13 @@ This is a project used in explaining the mongodb aggregation pipeline. Through t
 
 ## What we will be building
 A blog application with interesting features that would help us leverage various mongodb aggregation pipeline concepts we have learned. Below are the features of the project we will be building:
-  - User can login.
-  - User can register.
-  - User can post article.
-  - User can post comment on articles.
-  - User can update articles.
-  - User can delete articles.
+  - [x] User can login.
+  - [x] User can register.
+  - [x] User can post article.
+  - [x] User can post comment on articles.
+  - []  User can update articles.
+  - [] User can delete articles.
+  - [x] View specific article
   - User can view articles by categories.
   - User can view articles with the highest number of upvotes.
   - Users can view articles with the highest number of comments.

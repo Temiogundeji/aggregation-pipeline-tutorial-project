@@ -35,7 +35,6 @@ module.exports = {
             let: { authorId: "$author" },
             pipeline: [
               {
-                //match _id in the user collection to the authorId in the article collection
                 $match: {
                   $expr: { $eq: ["$_id", "$$authorId"] },
                 },
@@ -44,7 +43,6 @@ module.exports = {
                 $project: {
                   _id: 1,
                   username: 1,
-                  // Include other non-sensitive fields you want to expose
                 },
               },
             ],
