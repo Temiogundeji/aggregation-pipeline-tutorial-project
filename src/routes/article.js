@@ -4,9 +4,10 @@ const {
   modifyArticle,
   fetchArticleById,
 } = require("../controllers/article");
-const { getArticleById } = require("../services/articles");
+const {authMiddle}  = require("../middlewares/authorization");
 
-router.get("/:articleId", fetchArticleById).post("/", newArticle);
-router.post("/", modifyArticle);
+router.get("/:articleId", authMiddle, fetchArticleById);
+router.route("/").post(newArticle);
+router.patch("/", modifyArticle);
 
 module.exports = router;

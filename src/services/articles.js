@@ -27,6 +27,44 @@ module.exports = {
             localField: "comments",
             foreignField: "_id",
             as: "comments",
+            let: { articleId: "$article" },
+            pipeline: [
+              {
+                $match: {
+                  $expr: {
+                    $and: {
+                      $eq: [
+                        { $toString: new mongoose.Types.ObjectId(articleId) },
+                        { $toString: "$article" },
+                      ],
+                    },
+                  },
+                },
+              },
+              {
+                $lookup: {
+                  from: "users",
+                  localField: "author",
+                  foreignField: "_id",
+                  as: "author",
+                },
+              },
+              {
+                $unwind: "$author",
+              },
+              {
+                $project: {
+                  _id: 1,
+                  content: 1,
+                  author: {
+                    _id: 1,
+                    username: 1,
+                  },
+                  createdAt: 1,
+                },
+              },
+            ],
+            as: "comments",
           },
         },
         {
@@ -62,7 +100,7 @@ module.exports = {
               {
                 $project: {
                   _id: 1,
-                  name: 1,
+                  namer: 1,
                 },
               },
             ],
@@ -76,9 +114,12 @@ module.exports = {
             title: 1,
             content: 1,
             category: 1,
-            // Include other non-sensitive fields from the articles collection
-            author: 1, // The 'author' field now contains only the specified fields from the users collection
-            comments: 1,
+            author: 1,
+            comments: {
+              _id: 1,
+            },
+            upvotes: 1,
+            downvotes: 1,
           },
         },
       ]);
