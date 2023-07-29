@@ -9,7 +9,7 @@ const articleSchema = new mongoose.Schema(
     content: {
       type: String,
       required: true,
-    }, 
+    },
     author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -20,12 +20,12 @@ const articleSchema = new mongoose.Schema(
       ref: "Category",
       required: true,
     },
-    comments: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Comment",
-      },
-    ],
+    // comments: [
+    //   {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "Comment",
+    //   },
+    // ],
     upvotes: mongoose.Schema.Types.Number,
     downvotes: mongoose.Schema.Types.Number,
   },
