@@ -20,13 +20,16 @@ const articleSchema = new mongoose.Schema(
       ref: "Category",
       required: true,
     },
-    // comments: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "Comment",
-    //   },
-    // ],
-    upvotes: mongoose.Schema.Types.Number,
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ],
+    upvotes: {
+      type: mongoose.Schema.Types.Number,
+      default: 0,
+    },
     downvotes: mongoose.Schema.Types.Number,
   },
   { toJSON: { virtuals: true }, toObject: { virtuals: true }, timestamps: true }

@@ -5,8 +5,8 @@ const commentRoutes = require("./comment");
 const categoryRoutes = require("./category");
 
 router.use("/auth", authRoutes);
-router.use("/article", articleRoutes);
-router.use("/category", categoryRoutes);
-router.use("/comment", commentRoutes);
+router.use("/articles", articleRoutes);
+router.use("/categories", categoryRoutes);
+router.use("/comments", commentRoutes);
 
 module.exports = router;

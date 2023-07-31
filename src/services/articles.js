@@ -18,7 +18,7 @@ module.exports = {
       const article = await Article.aggregate([
         {
           $match: {
-            _id: new mongoose.Types.ObjectId(articleId),
+            _id: new mongoose.Types.ObjectId(String(articleId)),
           },
         },
         {
@@ -131,8 +131,124 @@ module.exports = {
         },
       ]);
       return articles;
-    } catch (error) {
-      throw new Error(error);
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  },
+  async getArticleWithMostComments() {
+    try {
+      const article = await Article.aggregate([
+        {
+          $lookup: {
+            from: "comments",
+            localField: "_id",
+            foreignField: "article",
+            as: "comments",
+          },
+        },
+        {
+          $lookup: {
+            from: "users",
+            let: { authorId: "$author" },
+            pipeline: [
+              {
+                $match: {
+                  $expr: { $eq: ["$_id", "$$authorId"] },
+                },
+              },
+              {
+                $project: {
+                  _id: 1,
+                  username: 1,
+                },
+              },
+            ],
+            as: "author",
+          },
+        },
+        { $unwind: "$author" },
+        {
+          $project: {
+            title: 1,
+            content: 1,
+            author: 1,
+            numComments: { $size: "$comments" },
+            comments: 1,
+          },
+        },
+        {
+          $sort: {
+            numComments: -1,
+          },
+        },
+        {
+          $limit: 1,
+        },
+      ]);
+      console.log(article);
+      return article;
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  },
+  async getArticleWithMostUpvotes() {
+    try {
+      const article = await Article.aggregate([
+        {
+          $lookup: {
+            from: "comments",
+            localField: "_id",
+            foreignField: "article",
+            as: "comments",
+          },
+        },
+        {
+          $lookup: {
+            from: "users",
+            let: { authorId: "$author" },
+            pipeline: [
+              {
+                $match: {
+                  $expr: { $eq: ["$_id", "$$authorId"] },
+                },
+              },
+              {
+                $project: {
+                  _id: 1,
+                  username: 1,
+                },
+              },
+            ],
+            as: "author",
+          },
+        },
+        { $unwind: "$author" },
+        {
+          $project: {
+            title: 1,
+            content: 1,
+            author: 1,
+            comments: 1,
+            upvotes: 1,
+            numOfUpvotes: { $size: "$upvotes" },
+          },
+        },
+        {
+          $sort: {
+            numOfUpvotes: -1,
+          },
+        },
+        {
+          $limit: 1,
+        },
+      ]);
+      console.log(article);
+      return article;
+    } catch (e) {
+      throw new Error(e.message);
     }
   },
 };
+
+
+

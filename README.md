@@ -21,9 +21,9 @@ A blog application with interesting features that would help us leverage various
   - [x] User can register.
   - [x] User can post article.
   - [x] User can post comment on articles.
+  - [x] View specific article
   - []  User can update articles.
   - [] User can delete articles.
-  - [x] View specific article
   - User can view articles by categories.
   - User can view articles with the highest number of upvotes.
   - Users can view articles with the highest number of comments.

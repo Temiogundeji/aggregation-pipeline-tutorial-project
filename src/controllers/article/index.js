@@ -6,15 +6,21 @@ const {
   createArticle,
   updateArticle,
   deleteArticle,
+  getArticleWithMostComments,
 } = require("../../services/articles");
+const { ObjectId } = require("mongodb");
 
 const newArticle = handleAsync(async (req, res) => {
   const article = await createArticle(req.body);
   res.send({ success: true, article });
 });
 const fetchArticleById = handleAsync(async (req, res) => {
-  const article = await getArticleById(req.params.articleId);
-  res.send({ success: true, article });
+  try {
+    const article = await getArticleById(new ObjectId(req.params.articleId));
+    res.send({ success: true, article });
+  } catch (e) {
+    throw new Error(e.message);
+  }
 });
 const modifyArticle = handleAsync(async (req, res) => {
   if (!req.body) {
@@ -27,5 +33,15 @@ const modifyArticle = handleAsync(async (req, res) => {
     message: "article has been updated successfully",
   });
 });
+const fetchArticleWithMostComments = handleAsync(async (req, res) => {
+  const article = await getArticleWithMostComments();
+  if (!article) throw new Error("No article has more comments!");
+  res.send({ success: true, article });
+});
 
-module.exports = { newArticle, modifyArticle, fetchArticleById };
+module.exports = {
+  newArticle,
+  modifyArticle,
+  fetchArticleById,
+  fetchArticleWithMostComments,
+};
