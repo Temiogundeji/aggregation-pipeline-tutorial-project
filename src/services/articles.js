@@ -230,12 +230,11 @@ module.exports = {
             author: 1,
             comments: 1,
             upvotes: 1,
-            numOfUpvotes: { $size: "$upvotes" },
           },
         },
         {
           $sort: {
-            numOfUpvotes: -1,
+            upvotes: -1,
           },
         },
         {

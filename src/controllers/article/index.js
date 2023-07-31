@@ -7,6 +7,7 @@ const {
   updateArticle,
   deleteArticle,
   getArticleWithMostComments,
+  getArticleWithMostUpvotes,
 } = require("../../services/articles");
 const { ObjectId } = require("mongodb");
 
@@ -39,9 +40,16 @@ const fetchArticleWithMostComments = handleAsync(async (req, res) => {
   res.send({ success: true, article });
 });
 
+const fetchArticleWithMostUpvotes = handleAsync(async (req, res) => {
+  const article = await getArticleWithMostUpvotes();
+  if (!article) throw new Error("Article not found");
+  res.send({ success: true, article });
+});
+
 module.exports = {
   newArticle,
   modifyArticle,
   fetchArticleById,
   fetchArticleWithMostComments,
+  fetchArticleWithMostUpvotes,
 };

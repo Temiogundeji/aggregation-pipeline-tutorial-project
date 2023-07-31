@@ -61,24 +61,25 @@ module.exports = {
         },
       ]);
       return comments;
-    } catch (error) {
-      throw new Error(error);
+    } catch (e) {
+      throw new Error(e.message);
     }
   },
-  // async addCommentToArticle(articleId, commentObj) {
-  //   try {
-  //     const article = await Article.aggregate([
-  //       { $match: { _id: ObjectId(articleId) } },
-  //       {
-  //         $addFields: {
-  //           comments: { $push: { ...commentObj } },
-  //         },
-  //       },
-  //     ]);
-  //     console.log(article);
-  //     return article;
-  //   } catch (e) {
-  //     throw new Error(e.message);
-  //   }
-  // },
+  async getMostRecentComment() {
+    try {
+      const comment = await Comment.aggregate([
+        {
+          $sort: {
+            timestamp: -1,
+          },
+        },
+        {
+          $limit: 1,
+        },
+      ]);
+      return comment;
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  },
 };

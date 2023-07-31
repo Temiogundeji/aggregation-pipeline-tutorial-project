@@ -1,5 +1,9 @@
 const handleAsync = require("../../utils/errorHandler");
-const { createComment, updateComment } = require("../../services/comments");
+const {
+  createComment,
+  updateComment,
+  getMostRecentComment,
+} = require("../../services/comments");
 
 const newComment = handleAsync(async (req, res) => {
   const comment = await createComment(req.body);
@@ -18,4 +22,10 @@ const modifyComment = handleAsync(async (req, res) => {
   });
 });
 
-module.exports = { newComment, modifyComment };
+const fetchLatestComment = handleAsync(async (req, res) => {
+  const comment = await getMostRecentComment();
+  if (!comment) throw new Error("Comment not found!");
+  res.send({ success: true, comment });
+});
+
+module.exports = { newComment, modifyComment, fetchLatestComment };
