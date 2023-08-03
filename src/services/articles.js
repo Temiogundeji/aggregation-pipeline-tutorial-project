@@ -185,7 +185,6 @@ module.exports = {
           $limit: 1,
         },
       ]);
-      console.log(article);
       return article;
     } catch (e) {
       throw new Error(e.message);
@@ -262,6 +261,58 @@ module.exports = {
       return article;
     } catch (e) {
       throw new Error("Error", e.message);
+    }
+  },
+  async sortArticleBackwards() {
+    try {
+      const articles = await Article.aggregate([
+        {
+          $lookup: {
+            from: "comments",
+            localField: "_id",
+            foreignField: "article",
+            as: "comments",
+          },
+        },
+        {
+          $lookup: {
+            from: "users",
+            let: { authorId: "$author" },
+            pipeline: [
+              {
+                $match: {
+                  $expr: { $eq: ["$_id", "$$authorId"] },
+                },
+              },
+              {
+                $project: {
+                  _id: 1,
+                  username: 1,
+                },
+              },
+            ],
+            as: "author",
+          },
+        },
+        { $unwind: "$author" },
+        {
+          $project: {
+            title: 1,
+            content: 1,
+            author: 1,
+            numComments: { $size: "$comments" },
+            comments: 1,
+          },
+        },
+        {
+          $sort: {
+            createdAt: -1,
+          },
+        },
+      ]);
+      return articles;
+    } catch (e) {
+      throw new Error(e.message);
     }
   },
 };

@@ -10,6 +10,7 @@ const {
   getArticleWithMostUpvotes,
   getArticleMostRecentArticle,
   getMostRecentArticle,
+  sortArticleBackwards,
 } = require("../../services/articles");
 const { ObjectId } = require("mongodb");
 
@@ -54,6 +55,12 @@ const fetchMostRecentArticle = handleAsync(async (req, res) => {
   res.send({ success: true, article });
 });
 
+const getArticlesInDescending = handleAsync(async (req, res) => {
+  const articles = await sortArticleBackwards();
+  if (!articles) throw new Error("No articles found");
+  res.send({ success: true, articles });
+});
+
 module.exports = {
   newArticle,
   modifyArticle,
@@ -61,4 +68,5 @@ module.exports = {
   fetchArticleWithMostComments,
   fetchArticleWithMostUpvotes,
   fetchMostRecentArticle,
+  getArticlesInDescending,
 };
