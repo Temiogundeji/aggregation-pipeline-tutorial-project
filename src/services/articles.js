@@ -247,6 +247,23 @@ module.exports = {
       throw new Error(e.message);
     }
   },
+  async getMostRecentArticle() {
+    try {
+      const article = await Article.aggregate([
+        {
+          $sort: {
+            createdAt: -1,
+          },
+        },
+        {
+          $limit: 1,
+        },
+      ]);
+      return article;
+    } catch (e) {
+      throw new Error("Error", e.message);
+    }
+  },
 };
 
 

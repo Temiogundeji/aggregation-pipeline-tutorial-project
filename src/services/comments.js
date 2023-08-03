@@ -70,7 +70,7 @@ module.exports = {
       const comment = await Comment.aggregate([
         {
           $sort: {
-            timestamp: -1,
+            createdAt: -1,
           },
         },
         {
