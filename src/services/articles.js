@@ -315,6 +315,16 @@ module.exports = {
       throw new Error(e.message);
     }
   },
+  async groupArticleById(){
+   try {
+    const articles = await Article.aggregate([
+      
+    ]);
+   }
+   catch (e) {
+
+   } 
+  }
 };
 
 

@@ -23,22 +23,21 @@ A blog application with interesting features that would help us leverage various
   - [x] User can post comment on articles.
   - [x] View specific article
   - []  User can update articles.
-  - [] User can delete articles.
-  - User can view articles by categories.
-  - User can view articles with the highest number of upvotes.
-  - Users can view articles with the highest number of comments.
-  - Users can retrieve the most recent articles:
-  - Sort articles by their creation date in descending order.
+  - []  User can delete articles.
+  - [x] User can view articles by categories.
+  - [x] User can view articles with the highest number of upvotes.
+  - [x] Users can view articles with the highest number of comments.
+  - [x] Users can retrieve the most recent articles:
+  - [x] Sort articles by their creation date in descending order.
+  - [x] Limit the results to a specific number of articles.
+  - [x] Retrieve the most commented articles:
+  - [x] Count the number of comments for each article.
+  - [x] Sort articles based on the comment count in descending order.
   - Limit the results to a specific number of articles.
-  - Retrieve the most commented articles:
-  - Count the number of comments for each article.
-  - Sort articles based on the comment count in descending order.
-  - Limit the results to a specific number of articles.
-  - Retrieve articles with their respective author information:
-  - Perform a lookup to join the User collection with the Article collection using the author's user ID.
-  - Add the author information to each article.
-  - Retrieve articles and their comment count:
-  - Perform a lookup to join the Article collection with the Comment collection using the article's ID.
+  - [x] Retrieve articles with their respective author information:
+  - [x] Perform a lookup to join the User collection with the Article collection using the author's user ID.
+  - [x] Retrieve articles and their comment count:
+  - [x] Perform a lookup to join the Article collection with the Comment collection using the article's ID.
   - Group the articles by their ID and calculate the count of comments for each article.
   - Retrieve articles and their average comment ratings:
   - Perform a lookup to join the Article collection with the Comment collection using the article's ID.
