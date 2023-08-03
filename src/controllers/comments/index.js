@@ -24,6 +24,7 @@ const modifyComment = handleAsync(async (req, res) => {
 
 const fetchLatestComment = handleAsync(async (req, res) => {
   const comment = await getMostRecentComment();
+  console.log("COMMENT", comment);
   if (!comment) throw new Error("Comment not found!");
   res.send({ success: true, comment });
 });

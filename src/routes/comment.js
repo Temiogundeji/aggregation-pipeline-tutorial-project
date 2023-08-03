@@ -4,7 +4,7 @@ const {
   modifyComment,
   fetchLatestComment,
 } = require("../controllers/comments");
-const authMiddle = require("../utils/errorHandler");
+const { authMiddle } = require("../middlewares/authorization");
 
 router.post("/", newComment);
 router.post("/", modifyComment);

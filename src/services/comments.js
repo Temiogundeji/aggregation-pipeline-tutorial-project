@@ -77,8 +77,10 @@ module.exports = {
           $limit: 1,
         },
       ]);
-      return comment;
+      const [commentObj] = comment;
+      return commentObj;
     } catch (e) {
+      console.error(e);
       throw new Error(e.message);
     }
   },
